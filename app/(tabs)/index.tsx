@@ -1,23 +1,57 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
+import {View, Text, TouchableOpacity, Button, Alert, SafeAreaView, ScrollView, StatusBar,StyleSheet} from 'react-native'
 // import { HelloWave } from '@/components/HelloWave';
 // import ParallaxScrollView from '@/components/ParallaxScrollView';
 // import { ThemedText } from '@/components/ThemedText';
 // import { ThemedView } from '@/components/ThemedView';
 
+
 export default function HomeScreen() {
 
-  const onPressHospitalList = () => {}
+  const onPressHospitalList = () => {};
+  // const region = { 서울, 경기, 인천, 강원, 충청, 전라, 경상, 제주 };
+  
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.scrollView}>
+    <View style={styles.buttonContainer}>
       <TouchableOpacity
         style={styles.button}
         // onPress={() => navigation.navigate('Call')}
         >
-        <Text style={styles.buttonText}>병원 보러 가기</Text>
+          <View style={styles.buttonTextContainer}>
+        <Text style={styles.buttonTextSmall}>지금 나의 건강상태를 확인하세요</Text>
+        <Text style={styles.buttonTextLarge}>병원 리스트 보러 가기</Text>
+        </View>
       </TouchableOpacity>
-    
     </View>
+    <View >
+      <Text style={styles.title}>지역별로 병원 찾기</Text>
+      <Button
+        title="Press me"
+        color="#f194ff"
+        onPress={() => Alert.alert('Button with adjusted color pressed')}
+      />
+    </View>
+    <View style={styles.regionalHospitalContainer}>
+      <Text style={styles.title}>내가 찾던 솔직한 후기</Text>
+      <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        style={styles.totalViewButton}
+        // onPress={() => navigation.navigate('Call')}
+        >
+          <Text style={styles.totalViewButtonText}>전체 보기</Text>
+      </TouchableOpacity>
+      </View>
+    </View>
+    <View>
+      <Text style={styles.title}>실시간 상담</Text>
+    </View>
+    <View>
+      <Text style={styles.title}>내 건강은 지금 어떨까?</Text>
+    </View>
+  </ScrollView>
+  </SafeAreaView>
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
     //   headerImage={
@@ -63,28 +97,63 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5', // 배경색상 추가
+    paddingTop: StatusBar.currentHeight,
+
+  }, 
+  scrollView: {
+    marginHorizontal: 10 // 양쪽 마진이 필요한지?
   },
-  title: {
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    marginTop: 10,
+  },
+  buttonTextContainer: {},
+  
+  button: {
+    backgroundColor: '#FFA500', 
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    borderRadius: 15,
+    marginBottom: 10,
+    width: 370,
+    height: 90
+  },
+  buttonTextSmall: {
+    color: '#fff', // 버튼 글자색상 추가
+    fontSize: 12,
+    fontWeight:
+     'bold',
+  },
+  buttonTextLarge: {
+    color: '#fff', // 버튼 글자색상 추가
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 30,
-    color: '#333', // 글자색상 추가
   },
-  button: {
-    backgroundColor: '#3498db', // 버튼 배경색상 추가
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: '#fff', // 버튼 글자색상 추가
-    fontSize: 18,
+  title: {
+    fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 30,
+    color: '#333',
   },
+  totalViewButton : { 
+    // marginBottom: 10,
+    // width: 370,
+    // height: 90
+    backgroundColor: '#006600'
+  },
+  totalViewButtonText:{
+    color: '#333',
+    fontSize: 24,
+  },
+  regionalHospitalContainer: {
+  flex: 1,
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  backgroundColor: '#ffffff'
+},
 });
 
 // const styles = StyleSheet.create({
