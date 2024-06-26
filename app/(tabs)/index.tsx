@@ -6,14 +6,25 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Image, Dimensions
+  Image,
+  Dimensions
 } from "react-native";
-import { SwiperFlatList } from "react-native-swiper-flatlist";
 
 export default function HomeScreen() {
-  const onPressHospitalList = () => {};
-  // const region = { 서울, 경기, 인천, 강원, 충청, 전라, 경상, 제주 };
-  const colors = []
+  const onPressHospitalList = () => {
+    // Add navigation or action here
+  };
+
+  const regions = [
+    { name: "서울", image: require('@/assets/images/서울.png') },
+    { name: "경기", image: require('@/assets/images/경기.png') },
+    { name: "인천", image: require('@/assets/images/인천.png') },
+    { name: "강원", image: require('@/assets/images/강원.png') },
+    { name: "충청", image: require('@/assets/images/충청.png') },
+    { name: "경상", image: require('@/assets/images/경상.png') },
+    { name: "전라", image: require('@/assets/images/전라.png') },
+    { name: "제주", image: require('@/assets/images/제주.png') },
+  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -21,7 +32,7 @@ export default function HomeScreen() {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            // onPress={() => navigation.navigate('Call')}
+            onPress={onPressHospitalList}
           >
             <View style={styles.buttonTextContainer}>
               <Text style={styles.buttonTextSmall}>
@@ -31,141 +42,43 @@ export default function HomeScreen() {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 20 }}>
+
+        <View style={styles.regionContainer}>
           <Text style={styles.title}>지역별로 병원 찾기</Text>
+          <View style={styles.regionButtonTextContainer}>
+            {regions.map((region, index) => (
+              <View key={index} style={styles.regionItem}>
+                <Image
+                  style={styles.regionImage}
+                  source={region.image}
+                />
+                <Text>{region.name}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.title}>내가 찾던 솔직한 후기</Text>
           <TouchableOpacity
-          // style={styles.regionButton}
-          // onPress={() => navigation.navigate('Call')}
+            style={styles.totalViewButton}
+            // onPress={/* Add navigation or action */}
           >
-            <View style={styles.regionButtonTextContainer}>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/서울.png`)}
-                />
-                <Text>서울</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/경기.png`)}
-                />
-                <Text>경기</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/인천.png`)}
-                />
-                <Text>인천</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/강원.png`)}
-                />
-                <Text>강원</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/충청.png`)}
-                />
-                <Text>충청</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/경상.png`)}
-                />
-                <Text>경상</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/전라.png`)}
-                />
-                <Text>전라</Text>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    width: 40,
-                    height: 40
-                  }}
-                  source={require(`@/assets/images/제주.png`)}
-                />
-                <Text>제주</Text>
-              </View>
-            </View>
+            <Text style={styles.totalViewButtonText}>전체 보기</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.title}>내가 찾던 솔직한 후기</Text>
-          <View style={styles.totalViewButtonContainer}>
-            <TouchableOpacity
-              style={styles.totalViewButton}
-              // onPress={() => navigation.navigate('Call')}
-            >
-              <Text style={styles.totalViewButtonText}>전체 보기</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <SwiperFlatList
-              autoplay
-              autoplayDelay={3}
-              autoplayLoop
-              index={3}
-              showPagination
-            >
-              <View>
-                <Text>1</Text>
-              </View>
-              <View>
-                <Text>2</Text>
-              </View>
-              <View>
-                <Text>3</Text>
-              </View>
-              <View>
-                <Text>4</Text>
-              </View>
-            </SwiperFlatList>
-          </View>
-        </View>
-        <View style={{ flexDirection: "row" }}>
+
+        <View style={styles.section}>
           <Text style={styles.title}>실시간 상담</Text>
-          <View style={styles.totalViewButtonContainer}>
-            <TouchableOpacity
-              style={styles.totalViewButton}
-              // onPress={() => navigation.navigate('Call')}
-            >
-              <Text style={styles.totalViewButtonText}>전체 보기</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={styles.totalViewButton}
+            // onPress={/* Add navigation or action */}
+          >
+            <Text style={styles.totalViewButtonText}>전체 보기</Text>
+          </TouchableOpacity>
         </View>
-        <View>
+
+        <View style={styles.section}>
           <Text style={styles.title}>내 건강은 지금 어떨까?</Text>
         </View>
       </ScrollView>
@@ -173,7 +86,7 @@ export default function HomeScreen() {
   );
 }
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -181,20 +94,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff"
   },
   scrollView: {
-    marginHorizontal: 10 // 양쪽 마진이 필요한지?
+    marginHorizontal: 10
   },
   buttonContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 10
-  },
-  buttonTextContainer: {
-    flex: 1
-  },
-  regionButtonTextContainer: {
-    flex: 1,
-    flexDirection: "row"
   },
   button: {
     backgroundColor: "#FFA500",
@@ -204,6 +109,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: 370,
     height: 90
+  },
+  buttonTextContainer: {
+    alignItems: 'center'
   },
   buttonTextSmall: {
     color: "#fff",
@@ -218,47 +126,35 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 30,
+    marginBottom: 10,
     color: "#333"
   },
-  totalViewButtonContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center"
+  regionContainer: {
+    marginBottom: 20
+  },
+  regionButtonTextContainer: {
+    flexDirection: "row",
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  },
+  regionItem: {
+    alignItems: "center",
+    marginBottom: 10,
+    width: (width - 40) / 4,
+  },
+  regionImage: {
+    width: 40,
+    height: 40
+  },
+  section: {
+    marginBottom: 20
   },
   totalViewButton: {
-    marginTop: 8
+    marginTop: 8,
+    alignSelf: 'flex-end'
   },
   totalViewButtonText: {
     color: "#333",
     fontSize: 12
-  },
-  regionalHospitalContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "#ffffff"
-  },
-  child: { width, justifyContent: 'center' },
-  text: { fontSize: width * 0.5, textAlign: 'center' },
+  }
 });
-
-// const styles = StyleSheet.create({
-//   button: {},
-//   titleContainer: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     gap: 8,
-//   },
-//   stepContainer: {
-//     gap: 8,
-//     marginBottom: 8,
-//   },
-//   reactLogo: {
-//     height: 178,
-//     width: 290,
-//     bottom: 0,
-//     left: 0,
-//     position: 'absolute',
-//   },
-// });
